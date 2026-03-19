@@ -39,7 +39,7 @@ Module DatabaseHelper
     ' ═══════════════════════════════════════════════════════════════════════════
     ' Método: InicializarBaseDatos
     ' Descripción: Crea las tablas del sistema si no existen y puebla los datos
-    '              iniciales (usuario administrador y cajero de ejemplo).
+    '              iniciales predeterminados.
     '              Debe llamarse una sola vez al iniciar la aplicación.
     ' ═══════════════════════════════════════════════════════════════════════════
     Public Sub InicializarBaseDatos()
@@ -161,12 +161,12 @@ Module DatabaseHelper
 
     ' ═══════════════════════════════════════════════════════════════════════════
     ' Método: InsertarDatosIniciales
-    ' Descripción: Puebla las tablas con datos de ejemplo necesarios para que
+    ' Descripción: Pobla las tablas con datos base necesarios para que
     '              el sistema funcione desde la primera ejecución:
     '              - Un usuario Administrador (admin / admin123)
     '              - Un usuario Cajero (cajero / cajero123)
     '              - Un cliente "Consumidor Final"
-    '              - Productos de ejemplo típicos de ferretería
+    '              - Productos del catálogo típico de ferretería
     ' ═══════════════════════════════════════════════════════════════════════════
     Private Sub InsertarDatosIniciales(conexion As SqliteConnection)
 
@@ -194,7 +194,7 @@ Module DatabaseHelper
                 ('Consumidor', 'Final', 'N/A', 'N/A', 'N/A', '0000000000');"
         EjecutarComando(sqlInsertClienteCF, conexion)
 
-        ' ── Productos de ejemplo (catálogo típico de ferretería) ──
+        ' ── Productos predeterminados (catálogo típico de ferretería) ──
         Dim sqlInsertProductos As String = "
             INSERT INTO Productos (Codigo, Nombre, Descripcion, Categoria, PrecioVenta, PrecioCosto, Stock, StockMinimo) VALUES
                 ('FT-001', 'Martillo de Uña 16oz',      'Martillo de acero forjado con mango de fibra de vidrio', 'Herramientas Manuales', 185.00, 120.00, 25, 5),
